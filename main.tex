@@ -1,0 +1,177 @@
+\documentclass[12pt]{report}
+\usepackage{my_preamble}
+
+% Document Starts
+\begin{document}
+
+\maketitle 
+
+\begin{abstract}
+  We're studying abstract algebra, specifically groups and rings.
+\end{abstract}
+
+\tableofcontents
+
+\pagebreak
+% <++>
+
+\chapter{Operations}
+
+\begin{itemize}
+  \item \(\N\quad +,\cdot\)
+  \item \(\Z\quad +,\cdot,-\)
+  \item \(\Q\quad +,\cdot,-\)
+  \item \(\R\quad +,\cdot,-\)
+  \item \(\C\quad +,\cdot,-,x\mapsto\overline x,x\mapsto\sqrt x\)
+  \item \(\TM{Vectors}\quad +,\TM{scalar mul}\)
+  \item \(\TM{Matricies}\quad +,\TM{scalar mul},\TM{matrix mul}\)
+  \item \(\TM{polynomials}\quad +,\cdot\)
+\end{itemize}
+
+In abstract algebra, we're iinterested in what notions of "numbers" exists.
+
+The different "types" of numbers really are distinguished by the operations on
+them. In this class we'll stick with operating on sets.
+
+\bbox
+\begin{defn}[Binary Operations]
+  A \TB{binary operation} on a set \(X\) is a function \(b:X\times X\to X\).
+\end{defn}
+\ebox
+\bboxnote
+\TB{Note:} we often write binary operators inline (like in Haskell).
+\ebox
+
+We could use \(+,\cdot,\times,\div,\otimes,\boxtimes,\oplus,\boxplus,\diamond\)
+
+
+\bbox
+\begin{defn}
+  a \TB{k-ary operator} on \(X\) is a func \(f:\underset k{\underbrace{
+  X\times\cdots\times X}}\to X\).
+\end{defn}
+\ebox
+
+\bboxnote
+\(x\mapsto\frac1x\) on \(\Q\) isn't a unary operation b/c \(\frac10\) isn't
+defined.
+
+\(\Q^\times=\{x\in\Q:x\neq 0\}\) does have the reciprocal as a binary operator,
+but not minus.
+\ebox
+
+\newcommand{\gop}[0]{\boxtimes}
+
+\bbox
+\begin{defn}
+  a binary operator \(\gop\) on \(X\) is \TB{associative} if 
+  \[x\gop(y\gop z)=(x\gop y)\gop z,\quad\forall x,y,z\in X\]
+\end{defn}
+\ebox
+
+\bboxnote
+\(+,\cdot\T{ on }\N,\Z\) are associative. \(-:\Z\times\Z\to\Z\) isn't
+associative. Neither is \(\div:\Q^\times\times\Q^\times\to\Q^\times\). Function
+composition is associative.
+\ebox
+
+\bbox
+\begin{defn}[(Informal) Bracketing]
+  Let \(\gop\) be a bin operator on a set \(X\). A \TB{bracketing} of a seq
+  \(a_1,\dots,a_n\in X\) is a way of inserting brackets into
+\end{defn}
+\[a_1\gop\cdots\gop a_n\st\T{the expression can be evaluated}\]
+\ebox
+
+
+\bbox
+\begin{defn}[Bracketing]
+  A \TB{bracket} of \(a_1,\dots,a_n\) is
+  \begin{equation*}
+    \begin{split}
+      n=1 &:\TM{word}\;a_1\\
+      n>1 &:(w_1\gop w_2)\T{ where}\\
+          &w_1\is\TM{bracket}\T{ of }a_1,\dots a_k\\
+          &w_2\is\TM{bracket}\T{ of }a_{k+1},\dots,a_n
+    \end{split}
+  \end{equation*}
+\end{defn}
+\ebox
+
+\begin{tcolorbox}[colback=red!20!white,colframe=red]
+  \begin{verbatim}
+  data Bracket t = Number t | Branch (Bracket t) (Bracket t) 
+  evalBracket :: (t -> t -> t) -> Bracket t -> t
+  evalBracket fn aseq =
+    case aseq of
+      Number x            -> x
+      Branch left' right' -> fn (evalBracket fn left')
+                                (evalBracket fn right')\end{verbatim}
+\end{tcolorbox}
+
+
+\bbox
+\begin{prop}
+  a binary operation \(\gop\) on \(X\) is associative \TB{iff} for every
+  seq \(a_1,\dots,a_n,\,n\ge 1\), every bracketing of \(a_1,\dots a_n\) 
+  evaluates to the same elem of \(X\).
+\end{prop}
+\ebox
+
+\begin{proof}
+  \((\limplies)\) Take \(n=3\). Then
+  \[(a\gop b)\gop c=a\gop(b\gop c),\;\forall a,b,c\in X\]
+
+  \((\implies)\) Proof by induction.
+
+  Base Case: \(n=1\). Every bracketing of a word evaluates to that same word.
+  
+  Assume proposition is true for \(n<k\), where \(k>1\). Let \(a_1,\cdots,a_k
+  \in X\). If \(w\) is a bracketing of \(a_1,\dots,a_k\) then
+  \(w=(w_1\gop w_2)\), where
+  \(w_1\) is a bracketing of \(a_1,\dots,a_l\) and \(w_2\) is a bracketing of
+  \(a_{l+1},\dots,a_k\).
+  \[w_1=(\cdots(a_1\gop a_2)\gop\cdots)\gop a_l\]
+  \[w_2=(a_{l+1}\gop(\cdots(a_{k-1}\gop a_k)\cdots))\]
+  \begin{equation*}
+    \begin{split}
+      w&\overset{\T{in }X}=w_1\gop w_2\\
+       &=(A\gop a_l)\gop w_2\\
+       &=A\gop(a_l\gop w_2)\T{ by assoc.}\\
+      \cdots&= a_1\gop(\cdots(a_{k-1}\gop a_k)\cdots)
+    \end{split}
+  \end{equation*}
+  Hence any 2 bracketings of \(a_1,\dots,a_k\) evaluate to \(a_1\gop
+  (\cdots(a_{k-1}\gop x_k)\cdots)\). By induction, the prop holds.
+\end{proof}
+
+
+% <++>
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% scrolloff buffer
