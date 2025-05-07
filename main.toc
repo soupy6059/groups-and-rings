@@ -1,7 +1,7 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Operations on Sets}{2}{}%
-\contentsline {section}{\numberline {1.1}K-Ary Operations}{2}{}%
-\contentsline {subsubsection}{{\it Definition}: Binary Operations}{2}{}%
-\contentsline {section}{\numberline {1.2}Associative Operations}{3}{}%
-\contentsline {subsubsection}{{\it Definition}: (Informal) Bracketing}{3}{}%
-\contentsline {subsubsection}{{\it Definition}: Bracketing}{3}{}%
+\contentsline {section}{\numberline {1}Operations on Sets}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}K-Ary Operations}{2}{subsection.1.1}%
+\contentsline {subsubsection}{{\it Definition}: Binary Operations}{2}{defn.1.1}%
+\contentsline {subsection}{\numberline {1.2}Associative Operations}{2}{subsection.1.2}%
+\contentsline {subsubsection}{{\it Definition}: (Informal) Bracketing}{3}{defn.1.4}%
+\contentsline {subsubsection}{{\it Definition}: Bracketing}{3}{defn.1.5}%
