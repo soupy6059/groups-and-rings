@@ -44,6 +44,10 @@ them. In this class we'll stick with operating on sets.
 \ebox
 
 We could use \(+,\cdot,\times,\div,\otimes,\boxtimes,\oplus,\boxplus,\diamond\)
+\begin{verbatim}
+FIND \gop in the .tex file to change the operator used. 
+/\\newcommand{\\gop}
+\end{verbatim}
 
 
 \bbox
@@ -120,6 +124,7 @@ composition is associative.
 \end{prop}
 \ebox
 
+\bboxproof
 \begin{proof}
   \((\limplies)\) Take \(n=3\). Then
   \[(a\gop b)\gop c=a\gop(b\gop c),\;\forall a,b,c\in X\]
@@ -146,9 +151,175 @@ composition is associative.
   Hence any 2 bracketings of \(a_1,\dots,a_k\) evaluate to \(a_1\gop
   (\cdots(a_{k-1}\gop x_k)\cdots)\). By induction, the prop holds.
 \end{proof}
+\ebox
 
 % lecture 2
 
+\bboxnote
+\begin{nota}[Associativity makes Brackets Pointless]\label{nota:bad_bracks}
+  Since \(\gop\) is associative, brackets become
+  redundant. \(a\gop b\gop c:=
+  a\gop(b\gop c)\)
+\end{nota}
+\ebox
+
+
+\bbox
+\begin{defn}[Commutative] \label{defn:comm}
+  \((\gop):X\times X\to X\) is \TB{commutative} (or "abelian") if
+  \[a\gop b=b\gop a,\forall a,b\in X\]
+\end{defn}
+\ebox
+
+\bboxex
+\(+,\cdot\T{ on }\R,\C,\Q,\Z\) are commutative. 
+\ebox
+
+\bboxex
+\(+\T{ on }M_{n\times m}\is\TM{comm}\). \(\TM{matrix\,mul}\T{ on }M_n
+\not\is\TM{comm}\).
+\ebox
+
+We're much more focused on associative operators as opposed to commutative.
+
+We cover 2 Topics:
+\begin{enumerate}
+  \item \TB{Group Theory:} a single associative op w/ some additional properties
+  \item \TB{Ring Theory:} 2 associative op that behave "like" + \& \(\cdot\).
+\end{enumerate}
+
+
+\bbox
+\begin{defn}[Identity]\label{defn:iden}
+  An identity for a given bin op \(\gop\) is a element \(e\in X\st e\gop
+  x=x\gop e=x,\;\forall x\in X\).
+\end{defn}
+\ebox
+
+\bboxex
+\(0\) is an identity for \(+\) on \(\Z,\R,\Q,\cdots\).
+\(1\) is an identity for \(\cdot\) on \(\Q\)
+\ebox
+
+
+\bbox
+\begin{lem}[Uniqueness of Identity]\label{lem:uniq_of_iden}
+  If \(e\) and \(e'\) are identities for \(\gop\) on \(X\), then \(e=e'\).
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \(e=e\boxtimes e'=e'\)
+\end{proof}
+\ebox
+
+\bbox
+\begin{defn}[Inverse]\label{defn:inv}
+  let \(\gop\) be a bin op on \(X\) with iden \(e\). Let \(x\in X\). 
+  \(y\in X\) is a
+  \begin{enumerate}
+    \item \TB{left inverse} for \(X\) if \(y\gop x=e\),
+    \item \TB{right inverse} for \(X\) if \(x\gop y=e\),
+    \item and an \TB{inverse} for \(X\) if \(x\gop y=e=y\gop x\).
+  \end{enumerate}
+\end{defn}
+\ebox
+
+\bbox
+\begin{lem}[Associtivity implies Uniqueness of Inverses]\label{lem:assoc_then_uniq_inv}
+  Suppose we have \((\gop)\is\TM{assoc}\). If \(y_L\T{ and }y_R\) are
+  left and right inverses of x, then \(y_L=y_R\).
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+  \begin{equation*}
+    \begin{split}
+      (y_L\gop x)\gop y_R &=e\gop y_R\\
+                          &=y_R\\
+      (y_L\gop x)\gop y_R&=y_L\gop(x\gop y_R)\quad\T{(by assoc)}\\
+                         &=y_L\gop e\\
+                         &=y_L
+    \end{split}
+  \end{equation*}
+\end{proof}
+\ebox
+
+\bboxnote
+\TB{Consequences:} \(x\) is invertable \TB{iff} it has a left and right
+inverse.
+\ebox
+
+\bboxnote
+\TB{Note:} is is possible to be left invertable but not right invertable, and
+vice verse.
+\ebox
+
+\bboxex
+\(\N=\{1,2,\dots\},+\) has no invertable elements.
+
+\((\Z,+)\) has every element invertable.
+
+\((\Z,\cdot)\) has only \(\{\pm 1\}\) as invertable.
+
+\((\Q,\cdot)\) has \(\Q^\times\) as invertable.
+\ebox
+
+\bboxnote
+\begin{nota}[Inverse]\label{nota:inv}
+  if \(x\) is inivertable, and has a uni inv, then we denote it
+  \(x^{-1}\).
+\end{nota}
+\ebox
+
+\bbox
+\begin{lem}[Properties of the Inverse]\label{lem:prop_of_inv}
+  Let \((\gop)\is\TM{assoc}\) w/ id \(e\). 
+  \begin{enumerate}
+    \item \(e\) is invertable, \(\inv e=e\). \bboxproof\begin{proof} \(e\gop e=e\)\end{proof}\ebox
+    \item if \(a\) is invertable, then so is \(\inv a\nd \inv{(\inv a)}=a\).
+    \item if \(a\nd b\is\TM{invertable}\implies\inv{(a\gop b)}=\inv b\gop\inv a\)
+      \bboxproof
+      \begin{proof}\(a\gop b\gop\inv b\gop\inv a=a\gop e\gop\inv a=e\) 
+        Similiar in reverse.
+      \end{proof}
+      \ebox
+    \item \(a\) is invertable \TB{iff}
+      \begin{equation*}
+        \begin{split}
+          a\gop x&=b\\
+          y\gop a&=b
+        \end{split}
+      \end{equation*} both have uniq sols \(\forall b\in X\).
+      \bboxproof
+      \begin{proof}
+        \((\implies)\) Assume \(a\) is invertable. Then
+        \begin{equation*}
+          \begin{split}
+            x&=\inv a\gop b\\
+            y&=b\gop\inv a
+          \end{split}
+        \end{equation*}
+
+        \((\limplies)\) Assume the system has a uni \(X\nd Y,\;\forall B\in X\).
+        Let \(b=e\), where \(e\) is the identity of \((X,\gop)\).
+        \begin{equation*}
+          \begin{split}
+            a\gop x&=e\\
+            y\gop a&=e\\
+            \implies x&=\inv a_R\\
+            \implies y&=\inv a_L\\
+            (\gop)\is\TM{assoc}&\implies \inv a_R=\inv a_L=\inv a\\
+                               &\implies a\T{ is invertable}
+          \end{split}
+        \end{equation*}
+      \end{proof}
+      \ebox
+  \end{enumerate}
+\end{lem}
+\ebox
 
 
 % <++>

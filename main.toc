@@ -2,6 +2,14 @@
 \contentsline {section}{\numberline {1}Operations on Sets}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}K-Ary Operations}{2}{subsection.1.1}%
 \contentsline {subsubsection}{{\it Definition}: Binary Operations}{2}{defn.1.1}%
-\contentsline {subsection}{\numberline {1.2}Associative Operations}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.2}Associative Operations}{3}{subsection.1.2}%
 \contentsline {subsubsection}{{\it Definition}: (Informal) Bracketing}{3}{defn.1.4}%
 \contentsline {subsubsection}{{\it Definition}: Bracketing}{3}{defn.1.5}%
+\contentsline {subsubsection}{{\it Notation}: Associativity makes Brackets Pointless}{4}{nota.1.1}%
+\contentsline {subsubsection}{{\it Definition}: Commutative}{4}{defn.1.6}%
+\contentsline {subsubsection}{{\it Definition}: Identity}{5}{defn.1.7}%
+\contentsline {subsubsection}{{\it Lemma}: Uniqueness of Identity}{5}{lem.1.1}%
+\contentsline {subsubsection}{{\it Definition}: Inverse}{5}{defn.1.8}%
+\contentsline {subsubsection}{{\it Lemma}: Associtivity implies Uniqueness of Inverses}{5}{lem.1.2}%
+\contentsline {subsubsection}{{\it Notation}: Inverse}{6}{nota.1.2}%
+\contentsline {subsubsection}{{\it Lemma}: Properties of the Inverse}{7}{lem.1.3}%
