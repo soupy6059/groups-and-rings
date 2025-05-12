@@ -321,6 +321,316 @@ vice verse.
 \end{lem}
 \ebox
 
+% lecture 3
+
+
+\bbox
+\begin{lem}[Cancellation Property]\label{lem:cancel_prop}
+  Let \(\gop\) be an assoc bin op on \(X\) w/ id \(e\). 
+
+  If it has a left inverse and \(a\gop u=a\gop v\implies u=v\).
+  Vice Versa.
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+  It should be taken as an axiom.
+\end{proof}
+\ebox
+
+\section{Groups}
+\subsection{Definitions}
+\bbox
+\begin{defn}[Group]\label{defn:group}
+  a group is a pair \((G,\gop)\) where \(G\) is a set and \(\gop\)
+  is an assoc bin op on \(G\), w/ and id \(e\), s/t every elem of \(G\) is 
+  invertable.
+\end{defn}
+\ebox
+
+\bbox
+\begin{nota}[Multiplicative Notation]\label{nota:mul_nota}
+  if the op is clear, we'll usually just write \(G\) instead of \((G,\gop)\).
+
+  We often use \((\cdot)\) as the default symbol for the operation on a group,
+  or even just writing \(g\cdot h=gh\). The identity can be denoted by
+  \(e,e_G,1,1_G\). We use \(\inv a\) for the inverse of \(a\). This is called
+  \TB{multiplicative notation}.
+\end{nota}
+\ebox
+
+\bbox
+\begin{defn}[Abelian Group]\label{defn:abel_group}
+  A group \((G,\gop)\) is \TB{abelian} if \(\gop\) is abelian (commutative).
+\end{defn}
+\ebox
+
+For abelian groups, we often use additive notation.
+
+\((+),\mathrm{id}\is 0 \T{ or } 0_G, \mathrm{inv}(a)=a\).
+
+\bboxex
+\begin{enumerate}
+  \item \(\Z^+\) is an abelian group (under \(+\)).
+    \[(+)\is\TM{assoc},\;\mathrm{inv}(a)=-a,\;\mathrm{id}(+)=0,\;+\is\TM{bin\;op}\]
+    Note that this is true for \(\Q^+=(\Q,+),\;\R^+\).
+  \item \(\Z^\cdot\) isn't a group; every element in \(\Z\) isn't invertable under
+    \((\cdot)\)
+  \item We know that \(|\Z|=|\Q|\). Let \(\phi\is\TM{bij}:\Z\to\Q\).
+    Define an operator on \(\Z\) by \(a\gop b=\inv \phi(\phi(a)+\phi(b))\).
+    \((\Z,\gop)\) is an (abelian) group. (\TB{Ex:} \(1\gop 2=8\))
+\end{enumerate}
+\ebox
+
+\bbox
+\begin{lem}
+  Let \(\gop\is(\T{assoc},\T{bin op on }M,\mathrm{id}\is e)\),
+  \(G:=\{g\in M:g\is\TM{invertable\;wrt\;\boxtimes}\}\). Then
+  \(G\) is a group w/ \(g\cdot h:=g\gop h\).
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+  Hmk.
+\end{proof}
+\ebox
+
+The smallest possible group is called the trivial group, and it has one
+element, \(\{e\},\;ee=e\).
+
+\begin{enumerate}
+  \item invertability
+  \item identity
+  \item closure of \((\gop)\)
+  \item assoc of \((\gop)\).
+\end{enumerate}
+
+
+\bboxex
+\[\Q^\times=\{a\in\Q:a\neq0\}\]
+\[\R^\times=\{a\in\R:a\neq0\}\]
+Both are groups under multiplication (bad notation considering \(\R^+\)
+is a group but \(\Q^\times\) is a set. I assume \(\Q^\cdot\) is a group, equal
+to \((\Q^\times,(\cdot))\)).
+\ebox
+
+\bbox
+\begin{coro}
+  Let \(X\) be a set, and let \(S_X\) be the set of functions
+  \(\{f:X\to X:f\is\TM{invertable}\}=\{f\in\mathrm{Fun}(X,X):f\is\TM{inv}\}\).
+
+  Then \(S_X\) is a group under function composition.
+\end{coro}
+\ebox
+
+\bbox
+\begin{defn}[Permutation Group]\label{defn:perm_group}
+  \(X:=\{1,\dots,n\}\). \(S_X\) is called the permutation group of rank \(n\),
+  and is denoted \(S_n\).
+  \bboxnote
+  \[\Sigma:=\{\sigma\in\mathrm{Fun}(X,X):\sigma\is\TM{bij}\}\]
+  \[S_X:=(\Sigma,\circ)\]
+  \ebox
+\end{defn}
+\ebox
+
+\bbox
+\begin{defn}[Order]\label{defn:order}
+  The order of a group \(G=(E,\gop)\) is \(|G|=|E|\), where \(E\) is finite. If
+  \(E\) is infinite, we'll say \(|G|=+\infty\).
+\end{defn}
+\ebox
+
+
+\bboxex
+\[|S_n|=|(\Sigma,\circ)|=n!\]
+\ebox
+
+% lecture 4
+
+\((M,\gop)\is\TM{monoid}
+\implies(M|_{\TM{inv}},\gop)\is\TM{group}\)
+
+\bboxex
+\TB{Example of above.} \(M_n\F:=M_{n\times n}(\F)\).
+
+\((M_n\F,\cdot)\is\TM{monoid}\), so
+\(\left(M_n\F|_{\TM{inv}},\cdot\right)
+\is\TM{group}\)
+\ebox
+
+
+\bboxnote
+\begin{nota}[General Linear Group]\label{nota:gen_L_group}
+  \(\left(M_n\F|_{\TM{int}},\cdot\right)\)
+  is called the \TB{general linear group}
+  (over \(\F\)), denoted
+  \[\mathrm{GL}_n\F\]
+\end{nota}
+\ebox
+
+\subsection{Dihedral Groups}
+\bbox
+\begin{defn}[N-Gon]\label{defn:n_gon}
+  Let \(\poly_n:n\ge3\) denote the regular
+  n-gon, with verticies
+  \[v_k=\left(
+      \cos\frac{2\pi k}n,
+      \sin\frac{2\pi k}n
+  \right):0\le j\le n\;
+\T{ noting }v_n=v_0\]
+\end{defn}
+\ebox
+
+\bbox
+\begin{defn}[An N-Gon Symmetry]
+  A \TB{symmetry of the n-gon} is an
+  elem \(T\in\TR{GL}_2\R\st
+  T(\poly_n)=\poly_n\)
+\end{defn}
+\ebox
+
+\bbox
+\begin{defn}[Dihedral Group]\label{defn:dihedral_group}
+  The set of symmetries of \(\poly_n\) is called the dihedral group of rank \(n\), denoted \(D_{2n}\).
+\end{defn}
+\ebox
+
+\bbox
+\begin{lem}[Dihedral GROUP]
+  \(D_{2n}\) is a group under matrix multiplication.
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+  Later, in section subgroups.
+\end{proof}
+\ebox
+
+What are the elems of \(D_{2n}\)?
+\(\TR{Id}(D_{2n})=I_2\).
+
+Rotation s by \(\frac{2\pi}n\) radians are elems, and \(s(v_i)=v_{i+1},\;\forall i=0,\dots,n-1\).
+
+Reflection along the \(x\) axis is an elem, so \(r(v_i)=v_{n-i}\).
+
+
+\bbox
+\begin{defn}[Group Power]\label{defn:group_power}
+  \(\,\)
+
+  \(g^n:=\underset n{\underbrace{g\cdot g\cdot \cdots \cdot g}},\;n\ge 0\).
+
+  \(g^{-n}:=\underset n{\underbrace{\inv g\cdot \inv g\cdot\cdots\cdot\inv g}}\)
+
+  \(g^0:=e=\TR{Id}(G)\).
+  \bboxnote \TB{Note.}
+  \(g^{-n}=(\inv g)^n\) and
+  \(g^{-n}g^n=e\) Prove the following:
+  \[g^ng^m=g^{n+m}\]
+  \[(g^n)^m=g^{nm}\]
+  \ebox
+\end{defn}
+\ebox
+
+All this also has additive notation.
+\(ng=g+\cdots+g\) and
+\((-n)g=\underset n{\underbrace{(-g)+\cdots+(-g)}}\)
+
+
+\bboxnote
+\TB{Note.} 
+\[(gh)^n\neq g^nh^n\]
+\ebox
+
+
+\bbox
+\begin{defn}[Order of an Element]\label{defn:order_of_and_elem}
+  The \TB{order} \(g\in G\) is denoted
+  \[|g|:=\TR{min}(\{k\ge 1:gk=e\}\cup\{+\infty\})\]
+\end{defn}
+\ebox
+
+\bboxex
+\TB{Example:} \(|e|=1,\;|g|=1\iff g=e\).
+\(\Z^+,\;|1|=+\infty\). 
+\((\Z\backslash n\Z,+)\;|[1]|=n\T{ b/c }
+n\cdot[1]=0\)
+\ebox
+
+\bbox
+\begin{lem}[Properties of Order]\label{lem:prop_of_order}
+  \begin{enumerate}
+    \item \(g^n=e\implies g^{n-1}\cdot g=e\implies g^{n-1}=g^{-1}\)
+    \item \(g^n=e\iff(g^n)^{-1}=e\)
+  \end{enumerate}
+  \(\implies|\inv g|=|g|\)
+\end{lem}
+\ebox
+
+
+\bboxex
+\TB{Example}
+\[-[1]=(n-1)[1]=[n-1]\]
+\ebox
+
+Back to dihedral groups.
+
+\(D_{2n},\;|s|=n\equiv s^n(\poly_n)=\poly_n\).
+\(|r|=2\equiv r^2(\poly_n)=\poly_n\).
+
+So \(e,s,s^2,\dots,s^{n-1}\in D_{2n}\),
+and \(r,sr,s^2r,\cdots,s^{n-1}r\in D_{2n}\).
+
+
+\bbox
+\begin{prop}[Dihedral Group Explicit Classification]\label{prop:dihedral_group_explicit_classification}
+  \(D_{2n}=
+  \{s^i:0\le i<n\}\cup
+  \{s^ir:0\le i<n\}\T{ and }
+  |D_{2n}|=2n\)
+\end{prop}
+\ebox
+
+
+\bboxproof
+\begin{proof}
+  \(S,T\in D_{2n}\). So \(S,T\) are linear operations. So if
+  \[S(v_0)=T(v_0)\]
+  \[S(v_1)=T(v_1)\]
+  \[\implies S=T\]
+  following if we treat \(v_0,v_1\) as basic vectors.
+
+  \TB{Claim 2:} \(T\in D_{2n}\implies\)
+  \[(T(v_0),T(v_1))\in\{(v_i,v_{i+1}):0\le i\le n-1\}
+  \cup\{(v_{i+1},v_i):0\le i\le n-1\}=:V\]
+  \bboxproof
+  \begin{proof}
+    \(v_0,v_1\) have to be sent to adj verticies (by picture lol, 
+    although we could use a "convexity" arguement).
+
+    $(s^i(v_0),s^i(v_1))$ $=(v_i,v_{i+1})$
+    $(r(v_0),r(v_1))$
+    $=(v_0,v_{n-1})$
+
+    $(s^ir(v_0),s^ir(v_1))$ $=(s^i(v_0),s^i(v_{n-1})$ $(v_i,v_{i-1})$
+  \end{proof}
+  \ebox
+
+  \TB{Claim 3:} \(\phi:D_{2n}\to V:\phi(T)=(T(v_0),T(v_1))\) is a 
+  bijection. By claim 1, it's a injection, and by the calculation above,
+  it's a surjection. Finally, \(2n=|V|\T{ and }D_{2n}=|V|\implies 2n=|D_{2n}|\).
+
+  So \(\{s^i:0\le i\le n-1\}\cup\{s^ir:0\le i\le n-1\}=D_{2n}\).
+
+  Also \(rs(v_0)=r(v_1)=v_{n-1}\), \(rs(v_1)=v_{n-2}\) so
+  \(rs=s^{n-1}r=\inv sr\).
+\end{proof}
+\ebox
+
 
 % <++>
 \end{document}
