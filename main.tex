@@ -631,6 +631,183 @@ and \(r,sr,s^2r,\cdots,s^{n-1}r\in D_{2n}\).
 \end{proof}
 \ebox
 
+\subsection{Subgroups}
+
+
+\bbox
+\begin{defn}[Subgroup]\label{defn:subgroup}
+  Let \(G\) be a group. \(H\mathbin{:\subseteq} G\) is a \TB{subgroup} if
+  \begin{enumerate}
+    \item \(\forall g,h\in H,\ g\cdot h\in H\)
+    \item \(g\in H\implies\inv g\in H\)
+    \item \(e_G\in H\)
+  \end{enumerate}
+\end{defn}
+\ebox
+
+\bboxnote
+\begin{nota}[Subgroup]\label{nota:subgroup}
+  \(H\le G\iff H\T{ is a subgroup of }G\).
+\end{nota}
+\ebox
+
+\bbox
+\begin{prop}[A Subgroup is a Group]\label{prop:a_subgroup_is_a_group}
+  \(H\le G\implies G\is\TM{group}\), with \(\cdot_H:H\times H\to H\).
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+  First, \(\cdot_H\) is well defined b/c \(H\) is clsd under \(\cdot_G\).
+
+  Next, \(e_G\) is an identity for \(\cdot_H\).
+
+  \(\cdot_H\) is assoc b/c \(\cdot_G\) is assoc.
+
+  Finally, and elem is inv b/c it has an inverge in H wrt \(\cdot_G\).
+\end{proof}
+\ebox
+
+\bboxex
+\begin{exam}\(\ \)
+  \[\Z^+\le\Q^+\le\R^+\le\C^+\]
+  \[\N^+\not\le\Z^+\]
+\end{exam}
+\ebox
+
+
+\bboxex
+\begin{exam}[The Dihedral Group is a Subgroup of the General Linear Group]\label{exam:the_dihedral_group_as_a_subgroup_of_the_general_linear_group}
+  \[D_{2n}\le\TR{GL}_2\R\]
+\end{exam}
+\ebox
+
+\bboxex
+\begin{exam}
+  \(\Q_{>0}\le\Q^\times\)
+  \[\TB{2: }\inn{s}=\{s^i:0\le i<n\}\le D_{2n}\]
+\end{exam}
+\ebox
+\bboxproof
+\begin{proof}[Proof of 2]
+  \(\ \)
+  \begin{enumerate}
+    \item \(s^i\cdot s^j=s^{i+j}=s^{an+k}=(s^n)^a\cdot s^k=e^a\cdot s^k=s^k\)
+    \item \(\inv g=g^{n-i},\ \inv{(g^0)}=g^0\)
+    \item \(e=s^0=e\)
+  \end{enumerate}
+\end{proof}
+\ebox
+
+
+\bboxex
+\begin{exam}
+  \(m\Z:=\{mk:k\in\Z\}\le\Z^+\).
+  \bboxproof
+  \begin{proof}
+    \(mj_1+mk_2=m(k_1+k_2)\in m\Z\).
+    \(-mk=m(-k)\in m\Z\).
+    \(0=m0\in m\Z\).
+  \end{proof}
+  \ebox
+
+\end{exam}
+\ebox
+
+\bboxex
+\begin{exam}
+  \(G\le G\) and \(\{e_G\}\le G\).
+\end{exam}
+\ebox
+
+\bbox
+\begin{defn}[Proper Subgroup]\label{defn:proper_subgroup}
+  \(H\le G\) is \TB{proper} if \(H\neq F\), denoted \(H<G\).
+\end{defn}
+\ebox
+"nontrivial proper subgroup..." \(\{e\}\neq H\neq G\)
+
+
+\bbox
+\begin{prop}
+  Let \(H\subseteq G\) be a subset of a group \(G\). Then \(H\le G\) iff
+  \begin{enumerate}
+    \item \(H\neq\emptyset\) and
+    \item \(g,h\in H\implies g\cdot\inv h\in H\).
+  \end{enumerate}
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+  \((\implies)\) clear.
+
+  \((\limplies)\) Suppose \((a)\) and \((b)\) hold. By \((a),\ H\ni g\).
+  By \((b)\), \(e=g\cdot\inv g\in H\).
+  If \(g,h\in H\), then \(\inv h\in H\), so \(g\cdot\inv{(\inv h)}\in H\),
+  but \(g\cdot\inv{(\inv h)}=g\cdot h\in H\).
+\end{proof}
+\ebox
+
+\bbox
+\begin{exam}[Subspaces are Subgroups of the Additive Vector Space Group]
+  If \(W\) is a subspace of vector space \(V\), the \(W\le V^+\).
+\end{exam}
+\ebox
+
+\bboxproof
+\begin{proof}[Check]
+  \(0\in W\) so nonempty.
+
+  \(v,w\in W\implies v-w\in W\), so W is a subgroup.
+\end{proof}
+\ebox
+
+\bbox
+\begin{prop}
+  Suppose \(G\is\TM{group}\) and \(H\subseteq G\) is finite. Then
+  \(H\subseteq G\) \TU{iff}
+  \begin{enumerate}
+    \item \(H\neq\emptyset\)
+    \item \(g\cdot h\in H\)
+  \end{enumerate}
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+  \((\implies)\) Clear.
+
+  \((\limplies)\) Assume (1.) and (2.) hold. So \(g\in H\). By
+  induction, \(g^n\in H\ \forall n\ge 1\).
+
+  B/c \(H\) is finite, \(g^1,g^2,g^3,\dots\), repeats. So
+  \(g^i=g^j\) fore some \(1\le i<j\).
+
+  But now we know \(g^{j-i}=e\in H\) noting that \(j-i\ge 1\).
+
+  We now know \(g^n\in H\) for \(n\ge 0\). Since \(g^{j-i}=e\implies
+  g^{j-i-1}\cdot g=e\implies\inv g=g^{j-i-1}\). Since \(j-i-1\ge 0\), 
+  \(\inv g\in H\).
+
+  So if \(g,h\in H\), then \(\inv h\in H\), then \(g\inv h\in H\), so \(H\)
+  is a subgroup.
+\end{proof}
+\ebox
+
+\bboxnote
+\TB{Aside.} the Set of subgroups of \(G\) form a \TB{lattice}.
+\ebox
+
+\bbox
+\begin{prop}
+  Suppose \(\FF\) is a nonempty set of subgroups of \(G\). Then
+  \[K=\bigcap_{H\in\FF}H\]
+  is a subgroup.
+\end{prop}
+\ebox
+
 
 % <++>
 \end{document}

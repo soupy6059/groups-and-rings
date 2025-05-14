@@ -31,3 +31,10 @@
 \contentsline {subsubsection}{{\it Definition}: Order of an Element}{12}{defn.2.9}%
 \contentsline {subsubsection}{{\it Lemma}: Properties of Order}{12}{lem.2.3}%
 \contentsline {subsubsection}{{\it Proposition}: Dihedral Group Explicit Classification}{12}{prop.2.1}%
+\contentsline {subsection}{\numberline {2.3}Subgroups}{13}{subsection.2.3}%
+\contentsline {subsubsection}{{\it Definition}: Subgroup}{13}{defn.2.10}%
+\contentsline {subsubsection}{{\it Notation}: Subgroup}{13}{nota.2.3}%
+\contentsline {subsubsection}{{\it Proposition}: A Subgroup is a Group}{13}{prop.2.2}%
+\contentsline {subsubsection}{{\it Example}: The Dihedral Group is a Subgroup of the General Linear Group}{14}{exam.2.2}%
+\contentsline {subsubsection}{{\it Definition}: Proper Subgroup}{14}{defn.2.11}%
+\contentsline {subsubsection}{{\it Example}: Subspaces are Subgroups of the Additive Vector Space Group}{15}{exam.2.6}%
