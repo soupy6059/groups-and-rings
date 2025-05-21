@@ -1,6 +1,13 @@
 \documentclass[12pt]{article}
 \usepackage{my_preamble}
 
+% G&R syntax
+\newcommand{\order}[1]{\left\lvert#1\right\rvert}
+\newcommand{\divides}{\mathbin|}
+\newcommand{\class}[1]{\left[#1\right]}
+\newcommand{\gop}[0]{\boxtimes}
+\newcommand{\id}[1][]{\mathrm{Id}}
+
 % Document Starts
 \begin{document}
 
@@ -66,7 +73,6 @@ but not minus.
 \ebox
 
 \subsection{Associative Operations}
-\newcommand{\gop}[0]{\boxtimes}
 
 \bbox
 \begin{defn}
@@ -385,7 +391,7 @@ For abelian groups, we often use additive notation.
 
 \bbox
 \begin{lem}
-  Let \(\gop\is(\T{assoc},\T{bin op on }M,\mathrm{id}\is e)\),
+  Let \(\gop\is(\T{assoc}\),\(\T{bin op on }M\)\(\mathrm{id}\is e)\),
   \(G:=\{g\in M:g\is\TM{invertable\;wrt\;\boxtimes}\}\). Then
   \(G\) is a group w/ \(g\cdot h:=g\gop h\).
 \end{lem}
@@ -1066,6 +1072,393 @@ and \(r,sr,s^2r,\cdots,s^{n-1}r\in D_{2n}\).
                               &\iff\gcd(a,n)=1
   \end{align*}
 \end{exam}
+\ebox
+
+\subsection{Modulo and Generators}
+
+
+\bboxlem
+\begin{lem}
+    \(g\in G\is\TM{grp}\)
+    \[
+        g^n=e\implies\order{g}\divides n
+    \]
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    Hwk.
+\end{proof}
+\ebox
+
+\bboxlem
+\begin{lem}\ 
+    \[
+        a\divides n\implies\order{\class{a}}=\frac na\in\Z\backslash n\Z
+    \]
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \[
+        a\divides n\iff\exists k\in\Z\st ak=n
+    \]
+    \[
+        l\class{a}\neq 0\limplies1\le l\le k
+    \]
+    \[
+        k\class{a}=0=\id\implies\order{\class{a}}=k=\frac na
+    \]
+\end{proof}
+\ebox
+
+\bboxlem
+\begin{lem}
+    \[
+        a,n\in\Z,\;
+        n\neq0,\;
+        b:=\gcd(a,n)
+    \]
+    \[  % <[a]> == <[b]>
+        \gen{\class{a}}=\gen{\class{b}}
+    \]
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \[
+        b\divides a\iff\exists k\in\Z\st bk=a
+    \]
+    \[% all congruent to a are all multiples of all congruent to b
+      % b is smaller lmao, so yep pretty much
+        \implies\class{a}\in\gen{\class{b}}
+    \]
+    \bboxnote
+    \begin{note}[README: Sometimes english is better]
+        saying all congruent to a are all multiples of all congruent to b.
+        b is smaller lmao, so yep pretty much.
+    \end{note}
+    \ebox
+    \[
+        \implies\gen{\class{a}}\subseteq\gen{\class{b}}
+    \]
+
+    \[
+        b=\gcd(a,n)\implies\exists x,y\in\Z\st
+    \]
+    \[
+        xa+yn=b
+    \]
+    \[
+        \implies x\class{a}+\cancelto0{\class{yn}}=\class{b}
+    \]
+    \[
+        \implies\class{b}\in\gen{\class{a}}
+    \]
+    \[
+        \implies\gen{\class{b}}=\gen{\class{a}}
+    \]
+\end{proof}
+\ebox
+
+\bboxprop
+\begin{prop}
+    \[
+        a,n\in\Z,\;n\neq 0
+    \]
+    \[
+        \implies\order{\class{a}}=\frac n{\gcd(a,n)}
+    \]
+\end{prop}
+\ebox
+\bboxproof
+\begin{proof}
+    \[
+        \order{\class{a}}=\order{\gen{\class{a}}}=\order{\gen{\class b}}\T{ where }
+        b:=\gcd(a,n)
+    \]
+    \[
+        =\order{\class{b}}=\frac nb
+    \]
+\end{proof}
+\ebox
+
+
+\bboxnote
+\begin{note}[Old Definitions from Algebra]\label{note:old}
+    \[
+        \Z\backslash n\Z:=\{\class{k}:k=0,\dots,n-1\}
+    \]
+    \[
+        \class{k}:=\{m\in\Z:m\equiv k\pmod{n}\}
+    \]
+    \[
+        \order{g}=\order{\gen{g}}
+    \]
+    \[
+        \gen{g}:=\{g^n:n\in\Z\}
+    \]
+\end{note}
+\ebox
+
+\bboxcoro
+\begin{coro}\
+    \begin{enumerate}
+        \item \(n\in\N,\;a\in\Z\backslash n\Z,\;\order{\gen{a}}\divides n\).
+            order of any cyclic subgroup of \(\Z\backslash n\Z\) divides n
+        \item (idk)
+            \[
+                \forall d\divides n,\;\exists!\gen{\class{a}}\st
+                \order{\gen{\class{a}}}=d\T{ where }
+                \class{a}=\frac nd
+            \]
+    \end{enumerate}
+\end{coro}
+\ebox
+
+\bboxproof
+\begin{proof}\TB{1.}
+    \[
+        \exists a\in\Z\st\order{\gen{a}}=d
+    \]
+    \[
+        \T{By a lem above, }d=\left.\frac n{\gcd(a,b)}\ \right|\ n
+    \]
+    \TB{2.}
+    \[
+        \gen{\class{a}}=\gen{\class{\gcd(a,n)}}=\gen{\class{\frac nd}}
+    \]
+    So any subgroup of order \(d\) must be in
+    \[
+        \gen{\class{\frac nd}}
+    \]
+    Conversely,
+    \[
+        d\divides n,\;\order{\gen{\class{\frac nd}}}=\order{\frac nd}=\frac n{n/d}=d
+    \]
+\end{proof}
+\ebox
+
+
+\bboxexam
+\begin{exam}
+    \(\Z\backslash 6\Z\)
+    \[
+        \gen{\class{6}}=\{0\}\implies\order{\gen{\class{6}}}=1
+    \]
+    \[
+        \gen{\class{3}}=\{0,3\}\implies\order{\gen{\class{3}}}=2
+    \]
+    \[
+        \gen{\class{2}}=\{0,2,4\}\implies\order{\gen{\class{2}}}=3
+    \]
+    \[
+        \gen{\class{1}}=\{0,\dots,5\}\implies\order{\gen{\class{1}}}=6
+    \]
+\end{exam}
+\ebox
+
+Later: All subgroups of cyclic groups are cyclic. Every cyclic group is isomorphic
+to \(\Z\) or \(\Z\backslash n\Z\) for some \(n\).
+
+\subsection{Homomorphisms}
+
+\bboxdefn
+\begin{defn}[Homomorphism]\label{defn:hom}
+    Let \(G,H\is\TM{grp}\). Then a fn \(f:G\to H\) is a \TB{homomorphism} if
+    \[
+        \forall g,h\in G,\;f(g\underset G\cdot h)=f(g)\underset H\cdot f(h)
+    \]
+\end{defn}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        G=\TR{GL}_n\R:=M_n\R|_{\TR{inv}},\;H=\R^\times
+    \]
+    \[
+        \det:\TR{GL}_n\R\to\R^\times
+    \]
+    \[
+        \det(A\underset{\TR{GL}_n\R}\cdot B)
+        =\det(A)\underset\R\cdot\det(B)
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \(T:V\to W\is\TM{linear\ transform}\implies
+    T:V^+\to W^+\is\TM{hom}\)
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \(\overset{\subseteq\R^\times}{\R_{>0}}\to\R_{>0}:x\mapsto\sqrt{x}\)
+    \[
+        \sqrt{ab}=\sqrt{a}\cdot\sqrt{b}
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \(\phi:\R^+\to\R^\times:x\mapsto e^x\)
+    \[
+        \phi(x+y)=e^{x+y}=e^xe^y=\phi(x)\phi(y)
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        \phi:\R^+\to\R^+:x\mapsto e^x
+    \]
+    \[
+        e^{x+y}\neq e^x+e^y\implies\phi\T{ isn't a hom}
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        \Z^+\to\Z^+:x\mapsto mx
+    \]
+    \[
+        m(x+y)=mx+my
+    \]
+\end{exam}
+\ebox
+
+
+\bboxexam
+\begin{exam}
+    \[
+        H\le G
+    \]
+    \[
+        i:H\hookrightarrow G:h\mapsto h\T{ is a hom}
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        \varphi:G\to H,\;\psi:H\to K
+    \]
+    \[
+        \T{Claim: }\psi\circ\varphi\T{ is a hom}
+    \]
+    \bboxproof
+    \begin{proof}
+        \[
+            \T{Let }g,h\in G,\T{ then }\phi\circ\varphi(gh)
+        \]
+        \[
+            =\psi(\varphi(g)\cdot\varphi(h))
+        \]
+        \[
+            =\psi\circ\varphi(g)\cdot\psi\circ\varphi(h)
+        \]
+    \end{proof}
+    \ebox
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        K\le G,\;\varphi:G\to H\T{ is a hom}
+    \]
+    \[
+        \T{Then }\left.\varphi\right|_K:K\to H\T{ is a hom}
+    \]
+    \bboxproof
+    \begin{proof}
+        \[
+            K\overset i\hookrightarrow G\to H
+        \]
+        \[
+            \varphi|_K=\varphi\circ i
+        \]
+    \end{proof}
+    \ebox
+\end{exam}
+\ebox
+
+\bboxlem
+\begin{lem}[Properties of Homomorphisms]\label{lem:properties_of_homs}
+    Let \(\phi\) be a homomorphism.
+    \begin{enumerate}
+        \item \(\varphi(e_G)=e_H\)
+            \bboxproof
+            \begin{proof}
+                \[
+                    \varphi(e_G)=\varphi(e_G\cdot e_G)
+                    =\varphi(e_G)\cdot\varphi(e_G)
+                \]
+                Consider
+                \[
+                    e_H=\inv h\cdot h\T{ for some }h\in H
+                \]
+                \[
+                    e_H=\varphi(e_G)^{-1}\cdot\varphi(e_G)
+                    =\varphi(e_G)^{-1}\cdot\varphi(e_G)\cdot\varphi(e_G)
+                    =\varphi(e_G)
+                \]
+            \end{proof}
+            \ebox
+        \item \(\varphi(\inv g)=\inv{\varphi(g)}\)
+            \bboxproof
+            \begin{proof}
+                \[
+                    e_H=\varphi(e_G)=\varphi(\inv g\cdot g)=\varphi(\inv g)\varphi(g)
+                \]
+                \[
+                    \implies\inv{\varphi(g)}=\phi(\inv g)
+                \]
+            \end{proof}
+            \ebox
+        \item \(\varphi(g^n)=\varphi(g)^n\)
+            \bboxproof
+            \begin{proof}
+                Induction. Works for integers.
+            \end{proof}
+            \ebox
+        \item \(\order{\varphi(g)}\divides\order{g}\)
+            \bboxproof
+            \begin{proof}
+                \[
+                    \order g=n<\infty
+                \]
+                \[
+                    \T{Then }\varphi(g)^n=\varphi(g^n)=\phi(e)=e
+                \]
+                \[
+                    \T{Note that }h^m=e\implies \order{h}\divides m
+                \]
+                \[
+                    \implies\order{\varphi(g)}\divides n
+                \]
+                \[
+                    \order{g}=\infty,\;\order{\varphi(g)}\cdot\infty=\infty
+                \]
+                \[
+                    \T{So }\order{\varphi(g)}\divides\infty
+                \]
+            \end{proof}
+            \ebox
+
+    \end{enumerate}
+\end{lem}
 \ebox
 
 % <++>
