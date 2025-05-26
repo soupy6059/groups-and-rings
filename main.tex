@@ -7,6 +7,8 @@
 \newcommand{\class}[1]{\left[#1\right]}
 \newcommand{\gop}[0]{\boxtimes}
 \newcommand{\id}[1][]{\mathrm{Id}}
+\newcommand\im{\TR{Im}}
+\newcommand\subgroup{\le}
 
 % Document Starts
 \begin{document}
@@ -1460,6 +1462,599 @@ to \(\Z\) or \(\Z\backslash n\Z\) for some \(n\).
     \end{enumerate}
 \end{lem}
 \ebox
+
+
+\bboxnota
+\begin{nota}
+    \(f:X\to Y,\ S\ssq X.\ f(S)=\{f(x):x\in S\}\)
+\end{nota}
+\ebox
+
+\newcommand\vphi{\varphi}
+\bboxprop
+\begin{prop}[Homomorphisms Preserve Sub-Group Order]
+    \(\vphi:G\to H\is\TM{hom},\ K\le G.\tthen \vphi(K)\le H.\)
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \(e_G\in K\implies\vphi(e_G)=e_H=e_K\in\vphi(K)\)
+    \[
+        g_{\vphi(K)},h_{\vphi(K)}\in\vphi(K),\ g_{\vphi(K)}=\vphi(g_G)\nd h_{\vphi(K)}=\vphi(h_G)
+    \]
+    \[
+        g_G\inv h_G\in K\T{ because }K\le G
+    \]
+    \[
+        g_{\vphi(K)}\inv h_{\vphi(K)}=\vphi(g_G)\vphi(h_G)^{-1}
+        =\vphi(g_G\inv h_G)\in\vphi(K)
+    \]
+    \[
+        \implies\vphi(K)\le G
+    \]
+\end{proof}
+\ebox
+
+\bboxdefn
+\begin{defn}[Image]
+    \(\vphi:G\to H\) hom. The \TB{image} denoted \(\im\vphi\) is the subgroup
+    of \(\vphi(G)\) of \(H\).
+\end{defn}
+\ebox
+\bboxnote
+\begin{note}
+    \(G\le G\implies \vphi(G)\le H\implies\im\vphi\le H\)
+\end{note}
+\ebox
+
+
+\bboxexam
+\begin{exam}
+    \(\vphi:\R^+\to\R^\times:x\mapsto e^x\)
+    \[
+        \im\vphi=\vphi(\R^+)=\R_{>0}^\times
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \(\vphi:\Z\to\Z:x\mapsto mx.\ \im\vphi=\vphi(\Z)=m\Z\)
+\end{exam}
+\ebox
+
+\bboxlem
+\begin{lem}[Minimal Image]
+    \(\vphi:G\to H\is\TM{hom}.\ \im\vphi\le K\le H\tthen\widetilde\vphi:G\to K
+    :g\mapsto\vphi(g)\is\TM{hom}\T{w/ }\im\widetilde\vphi=\im\vphi\)
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    "Obvious," from note above.
+\end{proof}
+\ebox
+We say \(\widetilde\vphi\) is \TB{induced by }\(\vphi\). ``Trivially build from.''
+
+\bboxexam
+\begin{exam}
+    \[
+        \vphi : \R^+ \to \R^\times      : x \mapsto e^x
+    \]
+    \[
+        \widetilde
+        \vphi : \R^+ \to \R^\times_{>0} : x \mapsto \vphi(x)
+    \]
+\end{exam}
+\ebox
+
+\bboxlem
+\begin{lem}[Surjective Homomorphism]
+    \[
+        \TM{hom}\ \vphi : G \to H \is \TM{surj}
+        \iff \im\vphi = H
+    \]
+\end{lem}
+\ebox
+
+\bboxcoro
+\begin{coro}[Phi Restricted to its Image is Surjective]
+    \[
+        \TM{hom}\ 
+        \vphi : G \to H,
+        \T{ induces a surj hom }
+        \widetilde\vphi : G \to \vphi(H)
+    \]
+\end{coro}
+\ebox
+
+\bboxprop
+\begin{prop}[Generaters and Homomorphisms are Abelian under Composition]
+    \(\iif\TM{hom}\ \vphi:G\to H,\
+    S\ssq G\tthen\vphi(\gen{S})
+    =\gen{\vphi(S)}\)
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \[
+        \vphi(S^{-1})
+        =\{\vphi(x^{-1}):x\in S\}
+        =\{\vphi(x)^{-1}:x\in S\}
+        =\vphi(S)^{-1}
+    \]
+    \begin{align*}
+        \vphi(\gen{S}_G)
+        &=\vphi(\{s_1\cdots s_n
+        :n\ge 0,\ s_1,\cdots,s_n\in S\unin S^{-1}\})\\
+        &=\{\vphi(s_1\cdots s_n)
+        :n\ge0,\;s_1,\dots,s_n\in S\unin S^{-1}\}\\
+        &=\{t_1\cdots t_n
+        :n\ge0,\;t_1,\dots,t_n\in\vphi(S\unin S^{-1})\},\;
+        t_i=\vphi(s_i)\\
+        &=\{t_1\cdots t_n
+            :n\ge0,\;t_1,\dots,t_n\in\vphi(S)\unin\vphi(S)^{-1}\\
+        &=\gen{\vphi(S)}_H
+    \end{align*}
+\end{proof}
+\ebox
+
+\bboxnota
+\begin{nota}[Preimage of a function]
+    \[
+        f:X\to Y,\ S\ssq Y,\ f^{-1}(S)
+        =\{x\in X : f(x)\in S\}
+    \]
+\end{nota}
+\ebox
+
+\bboxprop
+\begin{prop}[Preimages of Homomorphisms of Subgroups are Subgroups]
+    \(\TM{hom}\ \vphi:G\to H,\ K\le H.\)
+    \[
+        \vphi^{-1}(K) \subgroup G
+    \]
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \[
+        \vphi(e_G)=e_H \in K
+        \implies \vphi(e_G) \in K
+        \implies e_G\in\vphi^{-1}(K)\ \blacksquare
+    \]
+    \[
+        g,h \in \vphi^{-1}(K)
+        \implies \vphi(g),\vphi(h) \in K
+    \]
+    \begin{align*}
+        \implies \vphi(gh^{-1}) &\in K \\
+        =\vphi(g)\vphi(h)^{-1} &\in K \\
+        \implies gh^{-1}&\in\vphi^{-1}(K)
+    \end{align*}
+\end{proof}
+\ebox
+
+\bboxprop
+\begin{prop}[Cyclic Groups have Cyclic Subgroups]
+    If \(G\) is cyclic, then all subgroups of \(G\)
+    are cyclic.
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    Suppose \(G\) is cyclic, \(H\subgroup G\).
+    Because \(G\) is cyclic, there is a surjective
+    homomorphism \(\vphi:\Z\to G\) (\TU{by HWK}).
+    \[
+        \implies \im(\vphi) = G
+    \]
+
+    \(\llet K=\vphi^{-1}(H).\) \TU{By HWK}, 
+    \(K=m\Z=\gen{m}_\Z\).
+    \bboxnote
+    \begin{note}
+        \[
+            \iif\TM{surj}\ f
+            \tthen f(f^{-1}(S))=S
+        \]
+    \end{note}
+    \ebox
+    \[
+        \TM{surj}\ \vphi\implies
+        H=\vphi(\vphi^{-1}(H))
+         =\vphi(\gen{m}_\Z)
+         =\gen{\vphi(m)}_G
+    \]
+\end{proof}
+\ebox
+
+\bboxdefn
+\begin{defn}[Kernel]
+    \(\TM{hom}\ \vphi:G\to H\). The \TB{kernel} of
+    \(\vphi\) is the subgroup
+    \[
+        \TR{ker}\vphi=\vphi^{-1}(\{e_H\})\T{ of }G
+    \]
+\end{defn}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        \vphi:\R^+\to\R^\times:x\mapsto e^x
+    \]
+    \[
+        \ker\vphi=\{x\in\R:e^x=1\}
+                 =\{     0      \}
+    \]
+\end{exam}
+\ebox
+
+
+\bboxexam
+\begin{exam}
+    \[
+        \vphi:\Z\to m\Z:x\mapsto mx
+    \]
+    \[
+        \ker\vphi=
+        \begin{cases}
+            \Z    & m =    0 \\
+            \{0\} & m \neq 0
+        \end{cases}
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}[Special Linear Group]
+    \[
+        \ker\left(
+            \det : \TR{GL}_n\R \to \R^\times
+        \right) =: \TR{SL}_n\R
+    \]
+\end{exam}
+\ebox
+
+\bboxprop
+\begin{prop}[Homomorphic Injective Function]
+    \(\TM{hom}\ \vphi:G\to H\is\TM{inj}
+    \TB{ iff }\ker\vphi=\{e_G\}\)
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}[\((\implies)\) Proof]
+    \(\vphi\is\TM{inj}\), so \(\forall a_G,b_G\in G\),
+    \[
+        \vphi(a_G)=\vphi(b_G)
+    \]
+    \[
+        \implies a_G=b_G
+    \]
+    So,
+    \[
+        \vphi(a_G)=e_H=\vphi(e_G)
+    \]
+    \[
+        \implies a_G=e_G\T{ by inj}
+    \]
+    \[
+        \implies \ker\vphi = \{e_G\}
+    \]
+\end{proof}
+\ebox
+
+\bboxproof
+\begin{proof}[\((\implies)\) Proof]
+    Suppose \(\ker\vphi=\{e_G\}\). 
+    \[
+        \iif\vphi(g_G)=\vphi(h_G)
+    \]
+    \[
+        \tthen e_H = \vphi(g_G)^{-1}\vphi(h_G)=\vphi(g_G^{-1}h_G)
+    \]
+    \[
+        \implies g_G^{-1}h_G\in\ker\vphi
+    \]
+    \[
+        \implies g^{-1}_Gh_G=e_G
+    \]
+    \[
+        \implies h_G=g_G
+    \]
+\end{proof}
+\ebox
+
+A hom \(\vphi:G\to H\) is an iso if \(\vphi\) if
+\(\vphi\) is bijective (inj \& surj).
+
+\bboxcoro
+\begin{coro}[Isomorphic]
+    \(\vphi:G\to H\is\TM{iso}\TB{ iff }
+    \ker\vphi=\gen{e_G}\T{ and }
+    \im\vphi=H\).
+\end{coro}
+\ebox
+
+\bboxnote
+\begin{note}[Left Right Function Inverses]
+    \(f:X\to Y\) is bij \TB{iff} \(f\) has an inverse
+    \[
+        f^{-1}:Y \to X \T{ w/ properties}
+    \]
+    \[
+        f\circ f^{-1}=\id_Y
+    \]
+    \[
+        f^{-1}\circ f=\id_X
+    \]
+\end{note}
+\ebox
+
+\bboxprop
+\begin{prop}[Inverses are also Isomorphic]
+    \(\vphi:G\to H\) iso then \(\vphi^{-1}:H\to G\) is also iso (hom and bij).
+\end{prop}
+\ebox
+
+% lecutre 9
+
+\bboxproof
+\begin{proof}\
+    \begin{enumerate}
+        \item \(h_0,h_1\in H.\llet g_i\in G\) be the unique elem
+            w/ \(\vphi(g_i)=h_i\ i=0,1,\dots\)
+            \begin{align*}
+                \vphi^{-1}(h_0h_1)
+                &=\vphi^{-1}(\vphi(g_0)\vphi(g_1))\\
+                &=\vphi^{-1}(\vphi(g_0g_1))\\
+                &=g_0g_1\\
+                &=\vphi^{-1}(h_0)\vphi^{-1}(h_1)
+            \end{align*}
+            So \(\vphi^{-1}\) is a hom. Sonce \(\vphi^{-1}\) is invertable,
+            it's also a iso.
+    \end{enumerate}
+\end{proof}
+\ebox
+
+\bboxcoro
+\begin{coro}[Isomorphism iff Identity Compositions Exist]
+    \[
+        \T{hom }\vphi : G\to H\is\T{iso}
+        \iff\exists\psi:H\to G\st
+    \]
+    \[
+        \vphi\circ\psi=\id_H
+    \]
+    \[
+        \psi\circ\vphi=\id_G
+    \]
+\end{coro}
+\ebox
+
+\bboxdefn
+\begin{defn}[Isomorphic Sets]
+    Two groups \(G,H\) are isomorphic if there is an isomorphism \(\vphi:G\to H\).
+    \bboxnota
+    \begin{nota}[Isomorphic Sets]
+        \(G\isom H\)
+    \end{nota}
+    \ebox
+\end{defn}
+\ebox
+
+\bboxnote
+\begin{note}[Key Facts about Isomorphic Sets]\ 
+    \begin{enumerate}
+        \item \(\iif G\isom H\tthen H\isom G\)
+        \item \(\iif G\isom H\TR{\ and\ }H\isom K\tthen G\isom K\)
+        \item \(G\isom G\)
+    \end{enumerate}
+    This \TB{IS NOT} an equivalence relation, as they have to act on sets,
+    and the set of all groups is ``hard'' to talk about. Look into what a
+    ``\TB{proper class}'' is. If \(G\isom H\) then they're called ``\TB{identical}.''
+
+    In particular, if \(G\isom H\), then
+    \begin{enumerate}
+        \item \(\order{G}=\order{H}\)
+        \item \(G\is\TR{abelian}\iff H\is\TR{abelian}\)
+        \item \(\order{g}=\order{\vphi(g)},\ \forall g\in G,\
+            \vphi:G\to H\is\TR{iso}\)
+        \item \(K\ssq G\tthen K\subgroup G\iff\vphi(K)\subgroup H\)
+    \end{enumerate}
+\end{note}
+\ebox
+
+
+\bboxprop
+\begin{prop}[Isomorphic Cyclic Groups]
+    \(G,H\) are cyclic.
+    \[
+        G \isom H \iff \order{G} = \order{H}
+    \]
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \((\implies)\) Clear from before.
+\end{proof}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \((\limplies)\). Assume \(|H|=|G|\), and that they're cyclic.
+    \[
+        G=\gen{a} \ H=\gen{b} ,\llet n=|G|=|H|
+    \]
+    \bboxproof
+    \begin{proof}[Case 1: \(n=\infty\)]\ 
+        \[
+            G=\{a^i:i\in\Z\}\quad H=\{b^i:i\in\Z\}
+        \]
+        \[
+            a^i\neq a^j\iif i\neq j\quad b^i\neq b^j\iif i\neq j
+        \]
+        \[
+            \llet \vphi : G \to H : a^i\mapsto b^i
+        \]
+        Clearly a bijection.
+        \[
+            \vphi(a^ia^j)=\vphi(a^{i+j})=b^{i+j}=b^ib^j=\vphi(a^i)\vphi(a^j)
+            \implies\TM{hom}
+        \]
+    \end{proof}
+    \ebox
+    \bboxproof
+    \begin{proof}[Case 2: \(n<\infty\)]
+        \[
+            G = \{a^i : 0\le i<n\}\quad
+            H = \{b^i : 0\le i<n\}
+        \]
+        \[
+            \vphi:G\to H:a^i\mapsto b^i,\ 0\le i<n
+        \]
+        \[
+            \vphi(a^ia^j)=\vphi(a^{i+j})=\vphi(a^r)
+        \]
+        \[
+            \TR{where}\ i+j=qn+r,\ q\in\Z,\ 0\le r<n
+        \]
+        \[
+            \vphi(a^r)=b^r=b^{qn+r}=b^{i+j}=b^ib^j=
+            \vphi(a^i)\vphi(b^j)
+        \]
+    \end{proof}
+    \ebox
+\end{proof}
+\ebox
+
+\bboxcoro
+\begin{coro}
+    If \(G\) is cyclic, then
+    \begin{enumerate}
+        \item \(\order{G}=\infty,\ G\isom\Z^+\)
+        \item \(\order{G}<\infty,\ G\isom\left(\Z/n\Z\right)^+=:\Z^+_n\)
+    \end{enumerate}
+\end{coro}
+\ebox
+
+\bboxcoro
+\begin{coro}[Cyclic Groups are Abelian]
+    ...
+\end{coro}
+\ebox
+
+
+\bboxnota
+\begin{nota}[Standard Cyclic Groups]\
+    \[
+        C_n=\gen{a}=\{a^i : 0\le i< n\}
+    \]
+    \[
+        C_\infty = \gen{a} = \{ a^i : i \in \Z \}
+    \]
+\end{nota}
+\ebox
+
+\subsection{Cosets and Lagrange's Theorem}
+
+
+\bboxdefn
+\begin{defn}[Coset]
+    Let \(G\) be a group. If \(g\in G\) and \(S\ssq G\), then
+    \[
+        gS=\{gh:h\in S\}
+    \]
+    \[
+        Sg=\{hg:h\in S\}
+    \]
+    
+    If \(H \subgroup G\), then \(gH\) if called a left \TB{coset} of \(H\) in \(G\),
+    and respectfully right with \(Hg\).
+\end{defn}
+\ebox
+
+\bboxexam
+\begin{exam}\ 
+    \begin{enumerate}
+        \item
+            \[
+                m\Z \subgroup \Z: \
+                k\in\Z,\ k+m\Z = \{
+                    k+mn : n \in \Z
+                \}
+            \]
+        \item 
+            \[
+                U^+ \subgroup V^+
+            \]
+            \[
+                v+U\is\TR{a\ coset},\ v \in V
+            \]
+            \[
+                \TR{Solution\ space\ of\ }Ax=0\is
+                \ker(A)
+            \]
+            \[
+                \TR{Solution\ space\ of\ }Ax=b\is
+                w + \ker(A)
+            \]
+    \end{enumerate}
+\end{exam}
+\ebox
+
+\bboxprop
+\begin{prop}[Solution Cosets]
+    Suppose \(\vphi : G \to K\) is a hom and \(x_0\in G\).
+    \[
+        b := \vphi(x_0)
+    \]
+    The solution set to \(\vphi(x)+b\) is a coset
+    \[
+        \vphi^{-1}(\{b\})
+        =x_0\ker(\vphi)=\ker(\vphi)x_0
+    \]
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    Let \(k\in\ker(\vphi)\). Then
+    \[
+        \vphi(x_0k)=\vphi(x_0)\vphi(k)=\vphi(x_0)e=b
+    \]
+    \[
+        \implies x_0k\in\vphi^{-1}(\{b\})
+    \]
+    \[
+        \implies x_0\ker(\vphi)\ssq\vphi^{-1}(\{b\})
+    \]
+    \[
+        \llet y\in\vphi^{-1}(\{b\}),\ 
+        \llet h=x^{-1}_0 y
+    \]
+    \[
+        \implies y = x_0 h
+    \]
+    \[
+        \T{So }\vphi(h)=\vphi(x_0)^{-1}\vphi(y)
+        =b^{-1}b=e
+    \]
+    \[
+        \implies h \in\ker(\vphi)
+        \implies \vphi^{-1}(\{b\})\ssq \ker(\vphi)
+    \]
+\end{proof}
+\ebox
+
 
 % <++>
 \end{document}

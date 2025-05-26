@@ -30,7 +30,7 @@
 \usepackage[most]{tcolorbox} % this includes tikz i believe "t"
 \usetikzlibrary{math} % variables for math
 
-\title{Groups and Rings}
+\title{Real Analysis}
 \author{Carter Aitken}
 \date{2025-05-05}
 \pagecolor{black!20!white}
@@ -82,10 +82,10 @@
 \newtheorem{defn}{Definition}[section]
 \newtheorem{coro}{Corollary}[section]
 \newtheorem{prop}{Proposition}[section]
-\newtheorem{nota}{Notation}[section]
 \newtheorem{axim}{Axiom}[section]
 \newtheorem{exam}{Example}[section]
-
+\newtheorem{nota}{Notation}[section]
+\newtheorem{note}{Note}[section]
 
 \definecolor{berkblue}{rgb}{0.02,0.18,0.37}
 \definecolor{indigo}{rgb}{0,0.33,0.47}
@@ -93,29 +93,28 @@
 
 \definecolor{darkgoldenrod}{rgb}{0.72, 0.53, 0.04}
 \newcommand{\bbox}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
+\newcommand{\bboxthm}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
+\newcommand{\bboxdefn}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
+\newcommand{\bboxlem}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
+\newcommand{\bboxcoro}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
+\newcommand{\bboxprop}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
 \newcommand{\bboxproof}{\begin{tcolorbox}[colback=darkgoldenrod!20!white,colframe=darkgoldenrod]}
 \newcommand{\bboxex}{\begin{tcolorbox}[colback=red!20!white,colframe=red]}
+\newcommand{\bboxexam}{\begin{tcolorbox}[colback=red!20!white,colframe=red]}
 \newcommand{\bboxnote}{\begin{tcolorbox}[colback=yellow!20!white,colframe=yellow]}
+\newcommand{\bboxnota}{\begin{tcolorbox}[colback=yellow!20!white,colframe=yellow]}
 \newcommand{\ebox}{\end{tcolorbox}}
 
 % document tools
 
 
 \NewDocumentCommand{\sff}{}{\mathrm{I\!I}}
-\newcommand{\R}{\mathbb R}
-\newcommand{\C}{\mathbb C}
-\newcommand{\N}{\mathbb N}
-\newcommand{\Q}{\mathbb Q}
-\newcommand{\Z}{\mathbb Z}
-\newcommand{\F}{\mathbb F}
-\newcommand{\poly}{\mathbb P}
 
 \newcommand{\mat}[2][bmatrix]{
     \begin{#1} #2 \end{#1}
 }
 
 \newcommand{\inn}[1]{\left\langle #1\right\rangle}
-\newcommand{\gen}[1]{\left\langle #1\right\rangle}
 
 \newcommand{\T}[1]{\text{#1}}
 \newcommand{\TI}[1]{\textit{#1}}
@@ -124,12 +123,27 @@
 \newcommand{\TM}[1]{(\mathrm{#1})}
 \newcommand{\TR}[1]{\mathrm{#1}}
 
-\newcommand{\inv}[1]{#1^{-1}}
+% operator
 \newcommand{\st}{\T{ s/t }}
 \newcommand{\ot}{\leftarrow}
 \newcommand{\limplies}{\Longleftarrow}
-\newcommand{\is}{\leftharpoonup}
+\newcommand{\is}{\ \mathrm{is}\ }
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\opand}{\mathbin{\&}}
+\newcommand{\unin}{\cup}
+\newcommand{\bigunin}{\bigcup}
+\newcommand{\intr}{\cap}
+\newcommand{\bigintr}{\bigcap}
+\newcommand{\smin}{\smallsetminus}
+\newcommand{\ssq}{\subseteq}
+\newcommand{\sss}{\subset}
+\newcommand{\tthen}{\ \mathrm{then}\ }
+\newcommand{\iif}{\ \mathrm{if}\ }
+\newcommand{\llet}{\ \mathrm{let}\ }
 \newcommand{\nd}{\T{ and }}
+\newcommand{\gen}[1]{\inn{#1}}
+\newcommand{\isom}{\cong}
+
 
 \newcommand{\mycornmat}[5][bmatrix]{
     \begin{#1}
@@ -148,22 +162,29 @@
 \newcommand{\open}{\mathrm{open}}
 \newcommand{\spc}{\T{ }}
 \newcommand{\md}{\,\mathrm{d}}
+
+% Greek Aliases
 \newcommand{\e}{\epsilon}
 \newcommand{\de}{\delta}
 \newcommand{\al}{\alpha}
 \newcommand{\be}{\beta}
 \newcommand{\om}{\Omega}
+
+% Alternative Spaces
 \newcommand{\PP}{\mathcal P}
 \newcommand{\XX}{\mathcal X}
 \newcommand{\QQ}{\mathcal Q}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\TT}{\mathcal T}
 \newcommand{\FF}{\mathcal F}
 
-\newtheorem{note}{Note}[section] 
-\newcommand{\bboxthm}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]} 
-\newcommand{\bboxdefn}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
-\newcommand{\bboxlem}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}                                      
-\newcommand{\bboxcoro}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
-\newcommand{\bboxprop}{\begin{tcolorbox}[colback=blue!20!white,colframe=blue]}
-\newcommand{\bboxexam}{\begin{tcolorbox}[colback=red!20!white,colframe=red]}
-\newcommand{\bboxnota}{\begin{tcolorbox}[colback=yellow!20!white,colframe=yellow]}
+% Spaces
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\B}{\mathbb B}
+\newcommand{\F}{\mathbb F}
+\newcommand{\poly}{\mathbb P}
 

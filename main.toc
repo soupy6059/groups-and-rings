@@ -63,3 +63,28 @@
 \contentsline {subsection}{\numberline {2.5}Homomorphisms}{24}{subsection.2.5}%
 \contentsline {subsubsection}{{\it Definition}: Homomorphism}{24}{defn.2.15}%
 \contentsline {subsubsection}{{\it Lemma}: Properties of Homomorphisms}{26}{lem.2.10}%
+\contentsline {subsubsection}{{\it Proposition}: Homomorphisms Preserve Sub-Group Order}{27}{prop.2.9}%
+\contentsline {subsubsection}{{\it Definition}: Image}{27}{defn.2.16}%
+\contentsline {subsubsection}{{\it Lemma}: Minimal Image}{27}{lem.2.11}%
+\contentsline {subsubsection}{{\it Lemma}: Surjective Homomorphism}{28}{lem.2.12}%
+\contentsline {subsubsection}{{\it Corollary}: Phi Restricted to its Image is Surjective}{28}{coro.2.3}%
+\contentsline {subsubsection}{{\it Proposition}: Generaters and Homomorphisms are Abelian under Composition}{28}{prop.2.10}%
+\contentsline {subsubsection}{{\it Notation}: Preimage of a function}{28}{nota.2.8}%
+\contentsline {subsubsection}{{\it Proposition}: Preimages of Homomorphisms of Subgroups are Subgroups}{28}{prop.2.11}%
+\contentsline {subsubsection}{{\it Proposition}: Cyclic Groups have Cyclic Subgroups}{29}{prop.2.12}%
+\contentsline {subsubsection}{{\it Definition}: Kernel}{29}{defn.2.17}%
+\contentsline {subsubsection}{{\it Example}: Special Linear Group}{30}{exam.2.31}%
+\contentsline {subsubsection}{{\it Proposition}: Homomorphic Injective Function}{30}{prop.2.13}%
+\contentsline {subsubsection}{{\it Corollary}: Isomorphic}{31}{coro.2.4}%
+\contentsline {subsubsection}{{\it Note}: Left Right Function Inverses}{31}{note.2.7}%
+\contentsline {subsubsection}{{\it Proposition}: Inverses are also Isomorphic}{31}{prop.2.14}%
+\contentsline {subsubsection}{{\it Corollary}: Isomorphism iff Identity Compositions Exist}{31}{coro.2.5}%
+\contentsline {subsubsection}{{\it Definition}: Isomorphic Sets}{31}{defn.2.18}%
+\contentsline {subsubsection}{{\it Notation}: Isomorphic Sets}{31}{nota.2.9}%
+\contentsline {subsubsection}{{\it Note}: Key Facts about Isomorphic Sets}{32}{note.2.8}%
+\contentsline {subsubsection}{{\it Proposition}: Isomorphic Cyclic Groups}{32}{prop.2.15}%
+\contentsline {subsubsection}{{\it Corollary}: Cyclic Groups are Abelian}{33}{coro.2.7}%
+\contentsline {subsubsection}{{\it Notation}: Standard Cyclic Groups}{34}{nota.2.10}%
+\contentsline {subsection}{\numberline {2.6}Cosets and Lagrange's Theorem}{34}{subsection.2.6}%
+\contentsline {subsubsection}{{\it Definition}: Coset}{34}{defn.2.19}%
+\contentsline {subsubsection}{{\it Proposition}: Solution Cosets}{34}{prop.2.16}%
