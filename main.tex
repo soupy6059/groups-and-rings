@@ -9,6 +9,9 @@
 \newcommand{\id}[1][]{\mathrm{Id}}
 \newcommand\im{\TR{Im}}
 \newcommand\subgroup{\le}
+\newcommand\vphi{\varphi}
+\newcommand\sgq{\le}
+\newcommand\nsgq{\mathrel{\unlhd}}
 
 % Document Starts
 \begin{document}
@@ -393,9 +396,14 @@ For abelian groups, we often use additive notation.
 
 \bbox
 \begin{lem}
-  Let \(\gop\is(\T{assoc}\),\(\T{bin op on }M\)\(\mathrm{id}\is e)\),
-  \(G:=\{g\in M:g\is\TM{invertable\;wrt\;\boxtimes}\}\). Then
-  \(G\) is a group w/ \(g\cdot h:=g\gop h\).
+    \begin{verbatim}
+      Let 
+      \(\gop\is(\T{assoc}\),
+      \(\T{bin op on }M\)
+      \(\mathrm{id}\ \is\ e,\ 
+      G:=\{g\in M:g\ \is\ \TM{invertable\;wrt\;\boxtimes}\}\). Then
+      \(G\) is a group w/ \(g\cdot h:=g\gop h\).
+    \end{verbatim}
 \end{lem}
 \ebox
 
@@ -1470,7 +1478,6 @@ to \(\Z\) or \(\Z\backslash n\Z\) for some \(n\).
 \end{nota}
 \ebox
 
-\newcommand\vphi{\varphi}
 \bboxprop
 \begin{prop}[Homomorphisms Preserve Sub-Group Order]
     \(\vphi:G\to H\is\TM{hom},\ K\le G.\tthen \vphi(K)\le H.\)
@@ -2052,6 +2059,728 @@ A hom \(\vphi:G\to H\) is an iso if \(\vphi\) if
         \implies h \in\ker(\vphi)
         \implies \vphi^{-1}(\{b\})\ssq \ker(\vphi)
     \]
+\end{proof}
+\ebox
+
+% lecture 10
+
+
+\bboxprop
+\begin{prop}
+    \(G\ \is\ \TR{cyclic}\ \TR{and}\ H\subgroup G,\ \tthen\)
+    \[
+        \order{H}\divides\order{G}
+    \]
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \(\llet\ h\in H,\ m=\order{H},\ n=\order{G}.\ h^m=h^n=e\implies m\divides n\)
+\end{proof}
+\ebox
+
+\bboxdefn
+\begin{defn}[Set Mod Set]
+    \(\llet\ H\subgroup G\).
+    \[
+        G/H:=\{
+            gH : g\in G
+        \}
+    \]
+    \[
+        H\backslash G:=\{
+            Hg : g\in G
+        \}
+    \]
+    The left/right sets of all cosets.
+\end{defn}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        n\Z\subgroup \Z
+    \]
+    \[
+        \Z/n\Z = \{
+            m + n\Z : m\in\Z
+        \}=\{
+            m + n\Z : 0\le m<n
+        \}
+    \]
+\end{exam}
+\ebox
+
+\TB{Question: when is \(G/H\) a group?}
+
+
+\bboxexam
+\begin{exam}
+    \[
+        H=\gen{s}\ssq D_{2n}
+    \]
+    \[
+        s^i H = s^i \{s^0,s^1,\dots,s^{n-1}\}
+    \]
+    \[
+        =\{s^i,\dots,s^{i+n-1}\}=H
+    \]
+
+    \[
+        s^irH=rs^{-i}H=rH=\{r,rs,\cdots,rs^{n-1}\}=
+        \{s^ir:0\le i<n\}=Hr
+    \]
+    \[
+        G/H=\{e,r\}/\{s^i:0\le i<n\}
+        =\{H,rH\}=H\backslash G
+    \]
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        K=\gen{r}\subgroup D_{2n}
+    \]
+    \[
+        s^irK=s^iK
+    \]
+    \[
+        D_{2n}/K=\{s^iK:0\le i<n\}
+    \]
+
+    \[
+        Ks^i=\{s^i,rs^i\}=\{s^i,s^{-i}r\}=\{s^i,s^{n-i}r\}
+    \]
+    \[
+        Ks^ir=Krs^{-i}=Ks^i
+    \]
+
+    Just for an example of how these sets are different, take
+    \(n=3,\ i=1\).
+    \[
+        s\gen{r}=\{s,sr\}
+    \]
+    \[
+        \gen{r}s=\{s,s^2r\}
+    \]
+    \[
+        \implies s\gen{r}\neq\gen{r}s
+    \]
+
+    
+    \[
+        D_{2n}/\!\gen{r}=\{
+            s^i\gen{r}:0\le i<n
+        \}
+    \]
+    \[
+        \gen{r}\!\backslash D_{2n}=\{
+            \gen{r}\!s^i:0\le i<n
+        \}
+    \]
+    \[
+        s^i\gen{r}\neq\gen{r}s^j\ \forall i,j\ \TR{w/\ not\ both\ zero}
+    \]
+\end{exam}
+\ebox
+
+\bboxnote
+\begin{note}[Abelian Group's Left/Right Mod are Equivalent]
+    \[
+        gH=Hg\implies G/H=H\backslash G
+    \]
+\end{note}
+\ebox
+
+\bboxdefn
+\begin{defn}[Partition]
+    Let \(X\) be a set. A \TB{partitian} of \(X\) is a
+    subset \(Q\ssq 2^X=\PP(X)\st\)
+    \begin{enumerate}
+        \item 
+            \[
+                \bigunin_{S\in Q}S=X
+            \]
+        \item 
+            \[
+                \iif\ S,T\in Q,\ S\neq T,\ \tthen\ S\intr T=\emptyset
+            \]
+    \end{enumerate}
+    All elements are disjoint, and sum to the whole.
+\end{defn}
+\ebox
+
+\bboxprop
+\begin{prop}
+    Let \(H\subgroup G\), \(g,k\in G\). Then TFAE:
+    \begin{enumerate}
+        \item \(g^{-1}k\in H\)
+        \item \(k\in gH\)
+        \item \(gH=kH\)
+        \item \(gH\intr kH\neq\emptyset\)
+    \end{enumerate}
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}[\(1\implies 2\)]
+    \(g^{-1}K\in H\implies g^{-1}K=h\ \TR{for\ some}\ h\implies
+    h=gh\implies k\in gH\).
+\end{proof}
+\ebox
+
+\bboxproof
+\begin{proof}[\(2\implies 3\)]
+    \(k\in gH \implies k=gh\ \fforsome\ h\in H\).
+    Show \(gH=kH\).
+    \bboxproof
+    \begin{proof}[\(\ssq\)]
+        \[
+            \iif h' \in H\ \tthen\ kh' = ghh' \in gH
+        \]
+        \[
+            hh' \in H\ \TR{because}\ H\ \TR{is\ a\ subgroup}
+        \]
+        \[
+            \implies kH\in gH
+        \]
+    \end{proof}
+    \ebox
+
+    \bboxproof
+    \begin{proof}[\(\supseteq\)]
+        \[
+            h'\in H,\ gh'=kh^{-1}h'\in kH
+        \]
+    \end{proof}
+    \ebox
+    \(\implies kH=gH\)
+\end{proof}
+\ebox
+
+\bboxproof
+\begin{proof}[\(3\implies 4\)]
+    \(\TR{by}\ 2,\ g\in kH\implies gH\intr kH\neq\emptyset\)
+\end{proof}
+\ebox
+
+
+\bboxproof
+\begin{proof}[\(4\implies 1\)]
+    \(gh=kh'\implies k^{-1}g=h'h^{-1}\implies k^{-1}g\in H\)
+\end{proof}
+\ebox
+
+\bboxcoro
+\begin{coro}[G Mod H forms a Partitian of G]
+    ...
+\end{coro}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \[
+        \iif\ gH \intr kH \neq \emptyset\ 
+        \tthen\ gH = kH
+    \]
+    \[
+        \implies \iif\ S\neq S'\ \tthen\ S\intr S' = \emptyset
+    \]
+
+    \[
+        \forall g\in G\ g\in gH\implies\bigunin_{S\in G/H}S=G
+    \]
+    
+    \bboxnote
+    \begin{note}
+        Although \(\bigunin_{g\in G}gH=G\), its different from
+        the above because it has to go through duplicates.
+        
+        Note that \(k\in gH\implies gH=kH\), which means there are loads
+        of duplicate cosets in the second union.
+    \end{note}
+    \ebox
+\end{proof}
+\ebox
+
+\bboxdefn
+\begin{defn}[Relation]
+    A \TB{relation} on a set \(X\) is a subset of
+    \(X\times X\).
+\end{defn}
+\ebox
+
+\bboxnota
+\begin{nota}
+    \[
+        R\ssq X\times X.\ aRb\ \TR{means}\ (a,b)\in R
+    \]
+    \[
+        (\sim)\ssq X\times X,\ a \sim b\ \TR{means} (a,b)\in(\sim)
+    \]
+\end{nota}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \((<)\ssq\N\times\N.\ (<)=\{(a,b):a\ \TR{is\ strictly\ less\ than}\ b\}\)
+\end{exam}
+\ebox
+
+\bboxdefn
+\begin{defn}[Equivalence Relation]
+    A relation \((\sim)\) on \(X\) is called a 
+    \TB{equivalence relation} if
+    \begin{enumerate}
+        \item \TB{Reflexivity}: \(a\sim a,\ \forall a\in X\)
+        \item \TB{Symmetry}: \(a\sim b\implies b\sim a,\ \forall a,b\in X\)
+        \item \TB{Transitivity}: \(a\sim b\ \aand\ b\sim c\implies
+            a\sim c,\ \forall a,b,c\in X\)
+    \end{enumerate}
+\end{defn}
+\ebox
+
+\bboxdefn
+\begin{defn}[Equivalence Class]
+    If \(x\in X\) and \((\sim)\) is an equivalence relation
+    on \(X\), then the \TB{equivalence class} of \(x\) is
+    \[
+        [x]=\class{x}_\sim=\{
+            y \in X : x \sim y
+        \}
+    \]
+\end{defn}
+\ebox
+
+% lecture 11
+
+
+\bboxexam
+\begin{exam}[Congruence Classes]
+    \(\equiv\ (\TR{mod}\ n)\) is an equiv relation on\(\Z\),
+    and 
+    \[
+        \class{x} = \{
+            y : y \equiv x\pmod{n}
+        \}
+    \]
+\end{exam}
+\ebox
+
+\bboxprop
+\begin{prop}[Equivalence Relations are like Set Mod Sets]
+    Suppose \((\sim)\) is a eq. relation on \(X\). Then TFAE:
+    \begin{enumerate}
+        \item \(x\sim y\)
+        \item \(y\in\class{x}\)
+        \item \(\class{y}=\class{x}\)
+        \item \(\class{x}\intr\class{y}\neq\emptyset\)
+    \end{enumerate}
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    If you need these, let me know b/c I didn't want to write them out.
+\end{proof}
+\ebox
+
+\bboxcoro
+\begin{coro}[The Equivalence Class Partitian]
+    The set of equivalence classes 
+    \(\{\class{x}_\sim : x\in X\}\) is a 
+    partitian of \(X\).
+\end{coro}
+\ebox
+
+\bboxproof
+\begin{proof}
+    The union is the whole thing.
+
+    If two classes have nonempty intersection, they're equal by above.
+\end{proof}
+\ebox
+
+\bboxlem
+\begin{lem}[Equivalence Relation iff Partitian]
+    If \(Q\st\emptyset\not\in Q\) is a partitian of \(X\), then
+    the relation \((\sim)\) defined by \(x\sim y\) \TU{iff}
+    there is some \(S\in Q\st x,y\in Q\) is an equiv relation and
+    \(\{\class{x}:x\in X\}=Q\).
+
+    Look at each set in \(Q\). Then a relation is induced by
+    if both elements are in that set.
+\end{lem}
+\ebox
+
+\bboxprop
+\begin{prop}[Coset Relation]
+    \(H\subgroup G\). We can define a relation \((\sim_H)\) on \(G\) by
+    \[
+        g\sim_Hh=\top \iff g^{-1}h\in H
+    \]
+
+    This is a equiv relation, and \(\class{g}_\sim=gH\).
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \((\sim_H)\) is he equiv relation defined by the
+    partitian \(\{gH:g\in G\}=G/H\).
+
+    \TI{Directly}. 
+
+    \(g\sim h\iff g^{-1}h\in H\implies h^{-1}g\in H\iff h\sim g\).
+
+    \(g\sim h,\ h\sim j\). \(g^{-1}h\in H,\ h^{-1}j\in H\).
+    Show \(g^{-1}j\in H\). Since \(H\) is a subgroup, it's
+    closed under its binary operation. So
+    \(g^{-1}hh^{-1}j=g^{-1}j\in H\).
+
+    Now we'll show \(\class{g}=gH\).
+
+    Let \(h\in\class{g}\iff g\sim h\iff g^{-1}h\in H
+    \iff h\in gH\).
+\end{proof}
+\ebox
+
+\bboxdefn
+\begin{defn}[Index]
+    \(H\subgroup G\), the \TB{index} of \(H\) in \(G\) is
+    \[
+        [G\mathbin{:}H]:=\begin{cases}
+            \order{ G / H } &: G / H\ \TR{is\ finite}\\
+            \infty          &: \TR{o/w}
+        \end{cases}
+    \]
+\end{defn}
+\ebox
+
+``how many elements do we \TI{really} have?''
+
+
+\bboxlem
+\begin{lem}
+    fn \(S\mapsto S^{-1}\) defns a bijection
+    \(G/H\mapsto H\backslash G\)
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \(gH\in G/H\implies gH\mapsto H^{-1}g^{-1}
+    =Hg^{-1}=Hg\ni H\backslash G\)
+
+    \(S=(S^{-1})^{-1}\)
+\end{proof}
+\ebox
+
+\bboxcoro
+\begin{coro}
+    \[
+        [G:H]=\begin{cases}
+            |H\backslash G|&:|H\backslash G|<\infty\\
+            \infty         &:\TR{o/w}
+        \end{cases}
+    \]
+    % [G:H] = {
+    %     |H\G| if |H\G| < `8
+    %     `8    otherwise 
+    % }
+\end{coro}
+\ebox
+
+\bboxlem
+\begin{lem}
+    \(S\ssq G,\ g\in G\),
+    \(S\to gH : g\mapsto gh\) is bijection.
+
+    In particular, \(|S|=|gS|\).
+\end{lem}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \[
+        gS\to S:S\mapsto g^{-1}S\ \is\ \TR{an\ inverse}
+    \]
+\end{proof}
+\ebox
+
+
+\bboxthm
+\begin{thm}[Lagrange]
+    The order of a subgroup divides the group,
+    by the index of the subgroup in the group.
+
+    If a group \(H\) is a subgroup of \(G\),
+    so \(H\subgroup G\), then the order
+    of \(G\) is equal to the index of \(H\)
+    in \(G\) times the order of \(H\).
+
+    \[
+        |G|=[G:H]|H|
+    \]
+
+    In particular, \(|H|\divides|G|\).
+\end{thm}
+\ebox
+
+The order of a group is equal to the order of
+the subgroup times the number of cosets, group mod subgroup.
+
+If the order a group \(G\) is finite, then
+\([G:H]=\frac{|G|}{|H|}\).
+
+\bboxproof
+\begin{proof}
+    Case 1.
+    \[
+        \iif\ |H|=\infty\
+        \tthen\ |G|=\infty,\
+        \tthen\ |G|=[G:H]|H|
+    \]
+    
+    Case 2.
+    Since \(G/H\) is a partition of \(G\), 
+    if \([G:H]=\infty\), then
+    \(|G|=\infty\implies|G|=[G:H]|H|\).
+
+    Case 3.
+    Suppose \([G:H]\) and \(|H|\) are finite.
+    Since \(G/H\) is a partitian,
+    \[
+        |G|=\sum_{gH\in G/H}|gH|
+           =\sum_{gH\in G/H}|H|
+           =|H||G/H|
+           =|H|[G:H]
+    \]
+\end{proof}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        [D_{2n}:\gen{s}]
+        =\frac{|D_{2n}|}{|\gen{s}|}
+        =\frac{2n}{|s|}
+        =\frac{2n}n
+        =2
+    \]
+    \[
+        \order{\gen{r}}=\order{r}=2
+        \implies
+        [D_{2n}:\gen{r}]=n
+    \]
+    There are \(n\) equivalence classes
+    induced by the cosets \(rD_{2n}\)
+    and \(D_{2n}r\).
+\end{exam}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \[
+        [\Z:m\Z]=\order{\Z/m\Z}
+    \]
+    \[
+        =\order{ \{
+                z + m\Z : z \in \Z
+            \}
+        }=\cdots=m
+    \]
+\end{exam}
+\ebox
+
+\bboxcoro
+\begin{coro}
+    \[
+        x\in G,\ 
+        \order{x} \divides \order{G}
+    \]
+\end{coro}
+\ebox
+
+
+\bboxproof
+\begin{proof}
+    \[
+        |x|=|\gen{x}|
+    \]
+    \[
+        \gen{x}\subgroup G\implies
+        \order{\gen{x}}\divides\order{G}
+        \implies \order{x}\divides\order{G}
+    \]
+\end{proof}
+\ebox
+
+
+\bboxcoro
+\begin{coro}[Prime Ordered Groups are Cyclic]
+    Let \(\order{G}\) be prime.
+    Then \(G\) is cyclic.
+\end{coro}
+\ebox
+
+\bboxproof
+\begin{proof}
+    Let \(x\in G\smin\{e\}\).
+
+    Then \(\order{x}\divides\order{G}\).
+
+    Since \(\order{G}\) is prime and
+    \(|x|\neq 1\), \(\order{x}=\order{G}\).
+
+    So \(\order{\gen{x}}=\order{G}\).
+
+    \(\implies \gen{x}=G\).
+\end{proof}
+\ebox
+
+% normal subgroups.
+
+% lecture 12
+
+
+\bboxnote
+\begin{note}[Groups of a Certain Order]\ 
+    \begin{enumerate}
+        \item \(\{e\}\)
+        \item \(C_2\)
+        \item \(C_3\)
+        \item \(C_4,C_2\times C_2\)
+        \item \(C_5\)
+        \item \(C_6,C_2\times C_3\)
+        \item \(C_7\)
+        \item \(C_8,C_2\times C_4,C_2\times C_2\times C_2, D_8\)
+        \item \(\vdots\)
+    \end{enumerate}
+\end{note}
+\ebox
+
+\bboxprop
+\begin{prop}
+    \(\iif\ \vphi:G\to H\ \TR{hom},\ \tthen\ \exists\TR{bij}\ \vphi:G/\ker\vphi\to\im\vphi.\)
+
+    This bijection is \(\vphi=g\ker\vphi\mapsto\vphi(g)\)
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \(g\ker\vphi\) is the solution set \(\vphi(x)=\vphi(g)\).
+
+    \(\implies\vphi(g\ker(\vphi))=\{\vphi(g)\}\)
+
+    \(\implies \vphi^{-1}(\{\vphi(g)\})=g\ker\vphi\)
+    
+    \(\TR{Let}\ \phi:G/\ker(\vphi)\to H:=S\mapsto\vphi(S)=\{x\}\mapsto x\)
+
+    We know it maps onto \(\im(\vphi)\), and this function as an inverse
+    
+    \(\phi^{-1}:\im(\vphi)\to G/\ker(\vphi):=x\mapsto\vphi^{-1}(\{x\})\).
+\end{proof}
+\ebox
+
+\bboxcoro
+\begin{coro}
+    \[
+        [G:\ker(\vphi)]=\begin{cases}
+            |\im\vphi| & |\im\vphi|<\infty \\
+            \infty     & \TR{o/w}          \\
+        \end{cases}
+    \]
+
+    In particular, \(|\im\vphi|\divides|G|\).
+\end{coro}
+\ebox
+
+\bboxprop
+\begin{prop}
+    \(\iif\ |G|\ \TR{and}\ |H|\) are coprime, then
+    there is no non-trivial hom.
+\end{prop}
+\ebox
+
+\bboxproof
+\begin{proof}
+    \(\vphi:G\to H\).
+
+    \(\implies |\im\vphi|\divides|G|\)
+    \(\implies |\im\vphi|\divides|H|\)
+
+    \(\implies|\im\vphi|=1\)
+
+    \(\implies\im\vphi=\{e\}\)
+
+    \(\implies\vphi=g\mapsto e\)
+\end{proof}
+\ebox
+
+\subsection{Normal Subgroups}
+
+When is \(gH=Hh\)?
+
+\(H\le G\). \(gH=Hg\ \tthen\ g\in Hh\ \TR{and}\ h\in hH\ \TR{so}\ gH=hH=Hh=Hg\).
+\(\TR{So}\ gH=Hh\iff gH=Hg\)
+
+\bboxdefn
+\begin{defn}[Normal Subgroup]
+    \(H\le G\) is a \TB{normal subgroup} if \(gH=Hg\ \forall g\in G\)
+\end{defn}
+\ebox
+
+\bboxnota
+\begin{nota}[Normal Subgroup]
+    \(H\nsgq G\)
+\end{nota}
+\ebox
+
+\bboxdefn
+\begin{defn}[Conjugate]
+    \(g,h\in G\). The \TB{conjugate} of \(h\) by \(g\) is \(ghg^{-1}\).
+\end{defn}
+\ebox
+
+\bboxnote
+\begin{note}
+    Since \(gS=\{gs:s\in S\}\) and \(Sg=\{sg:s\in S\}\) then
+    \(gSg^{-1}=\{gsg^{-1}:s\in S\}\).
+    
+    \[
+        gH=Hg\iff gHg^{-1}=H
+    \]
+\end{note}
+\ebox
+
+\bboxprop
+\begin{prop}
+    \(N\sgq G\), TFAE:
+    \begin{enumerate}
+        \item \(N\nsgq G\)
+        \item \(gNg^{-1}=N\ \forall g\in G\)
+        \item \(gNg^{-1}\ssq N\ \forall g\in G\)
+        \item \(G/N=N\backslash G\)
+        \item \(G/N\ssq N\backslash G\)
+        \item \(N\backslash G\ssq G/N\)
+    \end{enumerate}
+\end{prop}
+\ebox
+
+\bboxexam
+\begin{exam}
+    \(\vphi:G\to H\) is a hom, \(\ker(\vphi)\nsgq G\).
+\end{exam}
+\ebox
+\bboxproof
+\begin{proof}
+    \(g\ker\vphi=\vphi^{-1}(\vphi(g))=\ker\vphi g\)
+
+    \(\implies \ker\vphi\nsgq G\)
 \end{proof}
 \ebox
 
